@@ -2,21 +2,127 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Documentação do Projeto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Observatório Demográfico</title>
+
+  <!-- Highlight de código com PrismJS (Tema Escuro) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+
   <style>
-    body { display: flex; font-family: sans-serif; margin: 0; }
-    aside { width: 250px; background: #f4f4f9; height: 100vh; position: fixed; padding: 20px; border-right: 1px solid #ddd; }
-    main { margin-left: 290px; padding: 20px; width: 100%; }
-    aside ul { list-style: none; padding: 0; }
-    aside a { text-decoration: none; color: #333; display: block; padding: 8px 0; }
-    section { margin-bottom: 50px; min-height: 80vh; }
-    pre { background: #1e1e1e; color: #fff; padding: 15px; border-radius: 8px; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      background-color: #fcfcfc;
+      color: #1a1a1a;
+    }
+
+    /* Menu Lateral Fixo */
+    aside {
+      width: 260px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #ffffff;
+      border-right: 1px solid #e5e5e5;
+      padding: 24px 16px;
+      overflow-y: auto;
+    }
+
+    aside h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #707070;
+      margin-bottom: 12px;
+    }
+
+    aside ul { list-style: none; padding: 0; margin: 0; }
+    aside li { margin-bottom: 4px; }
+    aside a {
+      text-decoration: none;
+      color: #404040;
+      font-size: 14px;
+      display: block;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    aside a:hover { background: #f0f0f0; color: #000; }
+
+    /* Conteúdo Principal */
+    main {
+      margin-left: 260px;
+      padding: 40px 60px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    section {
+      margin-bottom: 60px;
+      padding-top: 20px;
+    }
+
+    /* Crachá/Badge de Etapa */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background-color: #6366f1;
+      color: #fff;
+      border-radius: 6px;
+      font-weight: bold;
+      margin-right: 10px;
+    }
+
+    .step-title {
+      display: flex;
+      align-items: center;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    .description-box {
+      background: #f3f4f6;
+      border-left: 4px solid #6366f1;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-style: italic;
+      color: #4b5563;
+      margin-bottom: 20px;
+    }
+
+    /* Bloco de Código Customizado */
+    .code-container {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .code-header {
+      background: #1e1e1e;
+      color: #a3a3a3;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-family: monospace;
+      border-bottom: 1px solid #333;
+    }
+
+    pre[class*="language-"] {
+      margin: 0 !important;
+      border-radius: 0 !important;
+    }
   </style>
 </head>
 <body>
 
   <aside>
-    <h3>CONTEÚDO</h3>
+    <h3>Conteúdo</h3>
     <ul>
       <li><a href="#etapa1">1. Inicialização</a></li>
       <li><a href="#etapa2">2. HTML Semântico</a></li>
@@ -26,19 +132,42 @@
 
   <main>
     <section id="etapa1">
-      <h2>Etapa 1: Inicialização</h2>
+      <div class="step-title">
+        <span class="badge">1</span>
+        <h2>ETAPA 1: Inicialização</h2>
+      </div>
       <p>Descrição da inicialização do projeto...</p>
     </section>
 
     <section id="etapa2">
-      <h2>Etapa 2: Estrutura HTML Semântica</h2>
-      <pre><code>&lt;body&gt;
+      <div class="step-title">
+        <span class="badge">2</span>
+        <h2>ETAPA 2: Estrutura HTML Semântica</h2>
+      </div>
+
+      <div class="description-box">
+        Esqueleto da interface — O navegador renderiza a estrutura visual.
+      </div>
+
+      <div class="code-container">
+        <div class="code-header">index.html</div>
+        <pre><code class="language-html">&lt;body&gt;
+  &lt;!-- Cabeçalho: Identidade do dashboard --&gt;
   &lt;header&gt;
     &lt;h1&gt;Observatório Demográfico&lt;/h1&gt;
+    &lt;p&gt;Análise de dados públicos do IBGE - Censo 2022&lt;/p&gt;
   &lt;/header&gt;
+
+  &lt;!-- Barra lateral: controles e status --&gt;
+  &lt;aside&gt;
+    &lt;h2&gt;Painel de Controle&lt;/h2&gt;
+  &lt;/aside&gt;
 &lt;/body&gt;</code></pre>
+      </div>
     </section>
   </main>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
 </body>
 </html>
