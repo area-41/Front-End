@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Observatório Demográfico</title>
+  <title>Observatório Demográfico - Front-End</title>
 
   <!-- Highlight de código com PrismJS (Tema Escuro) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
@@ -30,13 +30,7 @@
       border-right: 1px solid #e5e5e5;
       padding: 24px 16px;
       overflow-y: auto;
-    }
-
-    aside a.active {
-      background-color: #e0e7ff;
-      color: #4338ca;
-      font-weight: 600;
-      border-left: 3px solid #6366f1;
+      z-index: 100;
     }
 
     aside h3 {
@@ -54,54 +48,80 @@
       color: #404040;
       font-size: 14px;
       display: block;
-      padding: 6px 10px;
+      padding: 8px 12px;
       border-radius: 6px;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
+      border-left: 3px solid transparent; /* Reserva espaço para a borda ativa */
     }
     aside a:hover { background: #f0f0f0; color: #000; }
 
+    /* --- ESTILO IMPORTANTE PARA O SCROLLSPY --- */
+    aside a.active {
+      background-color: #e0e7ff !important; /* Fundo azul claro */
+      color: #4338ca !important;            /* Texto azul escuro */
+      font-weight: 600;
+      border-left: 3px solid #6366f1 !important; /* Borda roxa lateral */
+    }
+
     /* Conteúdo Principal */
     main {
-      margin-left: 260px;
+      margin-left: 260px; /* Alinhado com a largura da aside */
       padding: 40px 60px;
       max-width: 900px;
       width: 100%;
     }
 
     section {
-      margin-bottom: 60px;
-      padding-top: 20px;
+      margin-bottom: 10px; /* Espaço entre seções */
+      padding-top: 60px;   /* "Respiro" para a âncora não colar no topo */
+      margin-top: -40px;   /* Ajuste compensatório do padding-top */
+      min-height: 80vh;   /* Garante que a seção ocupe bastante tela */
     }
 
-    /* Crachá/Badge de Etapa */
+    /* Elementos Visuais das Etapas (baseado na imagem 1) */
     .badge {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       background-color: #6366f1;
       color: #fff;
-      border-radius: 6px;
+      border-radius: 8px;
       font-weight: bold;
-      margin-right: 10px;
+      font-size: 16px;
+      margin-right: 15px;
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+
+    .step-subtitle {
+      font-size: 12px;
+      text-transform: uppercase;
+      color: #707070;
+      letter-spacing: 1px;
+      margin: 0;
     }
 
     .step-title {
-      display: flex;
-      align-items: center;
-      font-size: 22px;
-      margin-bottom: 16px;
+      font-size: 24px;
+      margin: 0;
+      font-weight: 700;
     }
 
     .description-box {
       background: #f3f4f6;
       border-left: 4px solid #6366f1;
-      padding: 12px 16px;
+      padding: 16px;
       border-radius: 4px;
       font-style: italic;
       color: #4b5563;
-      margin-bottom: 20px;
+      margin: 20px 0;
+      font-size: 14px;
     }
 
     /* Bloco de Código Customizado */
@@ -109,55 +129,75 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin-top: 20px;
     }
 
     .code-header {
       background: #1e1e1e;
       color: #a3a3a3;
-      padding: 8px 16px;
+      padding: 10px 16px;
       font-size: 12px;
       font-family: monospace;
       border-bottom: 1px solid #333;
+      display: flex;
+      justify-content: space-between;
     }
 
+    /* Ajuste para o PrismJS não adicionar margens extras */
     pre[class*="language-"] {
       margin: 0 !important;
       border-radius: 0 !important;
+      font-size: 13px;
     }
   </style>
 </head>
 <body>
 
+  <!-- BARRA LATERAL (MENU) -->
   <aside>
     <h3>Conteúdo</h3>
     <ul>
+      <!-- Os IDs nos href devem bater com os IDs das sections -->
       <li><a href="#etapa1">1. Inicialização</a></li>
       <li><a href="#etapa2">2. HTML Semântico</a></li>
       <li><a href="#etapa3">3. Conexão de Eventos</a></li>
+      <li><a href="#etapa4">4. Upload CSV</a></li>
     </ul>
   </aside>
 
+  <!-- CONTEÚDO PRINCIPAL -->
   <main>
     <section id="etapa1">
-      <div class="step-title">
+      <div class="step-header">
         <span class="badge">1</span>
-        <h2>ETAPA 1: Inicialização</h2>
+        <div>
+          <p class="step-subtitle">ETAPA 1</p>
+          <h2 class="step-title">Inicialização do Projeto</h2>
+        </div>
       </div>
-      <p>Descrição da inicialização do projeto...</p>
+      <p>Nesta etapa, configuramos o ambiente básico e a estrutura de pastas...</p>
+      <div style="height: 300px; background: #eee; margin-top:20px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#777">Simulação de Conteúdo Longo 1</div>
     </section>
 
     <section id="etapa2">
-      <div class="step-title">
+      <div class="step-header">
         <span class="badge">2</span>
-        <h2>ETAPA 2: Estrutura HTML Semântica</h2>
+        <div>
+          <p class="step-subtitle">ETAPA 2</p>
+          <h2 class="step-title">Estrutura HTML Semântica</h2>
+        </div>
       </div>
 
       <div class="description-box">
-        Esqueleto da interface — O navegador renderiza a estrutura visual.
+        Esqueleto da interface — O navegador renderiza a estrutura visual. Nada de lógica ainda — apenas organização semântica para acessibilidade e SEO.
       </div>
 
       <div class="code-container">
-        <div class="code-header">index.html</div>
+        <div class="code-header">
+          <span>HTML</span>
+          <span>index.html</span>
+        </div>
+        <!-- Note a classe language-html para o highlight -->
         <pre><code class="language-html">&lt;body&gt;
   &lt;!-- Cabeçalho: Identidade do dashboard --&gt;
   &lt;header&gt;
@@ -168,45 +208,85 @@
   &lt;!-- Barra lateral: controles e status --&gt;
   &lt;aside&gt;
     &lt;h2&gt;Painel de Controle&lt;/h2&gt;
+    &lt;!-- Status dinâmico: atualizado via Python --&gt;
+    &lt;div&gt;
+      &lt;p id="status-carregamento"&gt;
+        Inicializando Motor Python e WebAssembly...
+      &lt;/p&gt;
+    &lt;/div&gt;
   &lt;/aside&gt;
 &lt;/body&gt;</code></pre>
       </div>
     </section>
+
+    <section id="etapa3">
+      <div class="step-header">
+        <span class="badge">3</span>
+        <div>
+          <p class="step-subtitle">ETAPA 3</p>
+          <h2 class="step-title">Conexão de Eventos</h2>
+        </div>
+      </div>
+      <p>Gerenciamento de cliques e interações do usuário com JavaScript...</p>
+      <div style="height: 400px; background: #eee; margin-top:20px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#777">Simulação de Conteúdo Longo 3</div>
+    </section>
+
+    <section id="etapa4">
+      <div class="step-header">
+        <span class="badge">4</span>
+        <div>
+          <p class="step-subtitle">ETAPA 4</p>
+          <h2 class="step-title">Upload CSV</h2>
+        </div>
+      </div>
+      <p>Processamento do arquivo de dados enviado pelo usuário...</p>
+       <div style="height: 300px; background: #eee; margin-top:20px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#777">Simulação de Conteúdo Longo 4</div>
+    </section>
   </main>
 
+  <!-- Scripts para Highlight de Código (PrismJS) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+
+  <!-- --- SCRIPT DE SCROLLSPY (JS) --- -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('section');
-      const navLinks = document.querySelectorAll('aside a');
+      const sections = document.querySelectorAll('main > section');
+      const navLinks = document.querySelectorAll('aside ul li a');
 
-      // Configura o observador para detectar qual seção está ocupando a tela
+      // Configuração do Observador
       const observerOptions = {
-        root: null,
-        rootMargin: '-20% 0px -60% 0px', // Ajusta a linha de detecção da tela
-        threshold: 0
+        root: null, // Usa a viewport do navegador
+        // rootMargin define a "linha de corte" na tela para detecção.
+        // -30% do topo e -40% do fundo foca a detecção no centro da tela.
+        rootMargin: '-30% 0px -40% 0px', 
+        threshold: 0 // Dispara assim que qualquer pixel entra na margem
       };
 
-      const observer = new IntersectionObserver((entries) => {
+      const observerCallback = (entries) => {
         entries.forEach(entry => {
+          // Se a seção está cruzando a linha de detecção
           if (entry.isIntersecting) {
             const currentId = entry.target.getAttribute('id');
             
-            // Remove a classe 'active' de todos os links
+            // 1. Remove a classe 'active' de TODOS os links do menu
             navLinks.forEach(link => link.classList.remove('active'));
             
-            // Adiciona a classe 'active' ao link da seção visível
+            // 2. Adiciona 'active' APENAS ao link correspondente à seção atual
             const activeLink = document.querySelector(`aside a[href="#${currentId}"]`);
             if (activeLink) {
               activeLink.classList.add('active');
             }
           }
         });
-      }, observerOptions);
+      };
 
-      // Registra todas as seções no observador
-      sections.forEach(section => observer.observe(section));
+      const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+      // Diz ao observador para monitorar cada seção
+      sections.forEach(section => {
+        observer.observe(section);
+      });
     });
   </script>
 </body>
