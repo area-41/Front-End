@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observatório Demográfico</title>
+    <!-- Carregamento do WebAssembly-->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <!-- Carregamento de pacotes -->
+    <py-config>
+        packages = ["pandas"]
+    </py-config>
+</head>
+<body>
+    <header>
+        <h1>Observatório Demográfico</h1>
+        <p>Análise de dados públicos do IBGE - Censo 2022</p>
+    </header>
+    <!-- ASIDE -->
+    <aside>
+        <h2>Filtros de Pesquisa</h2>
+        <!-- STATUS DE CARREGAMENTO -->
+        <div>
+            <p id="status-carregamento">⚙️ Inicializando Motor Python e WebAssembly... Por favor, aguarde. </p>
+        </div>
+
+        <form>
+            <!-- Grupo 1: Seleção de UF -->
+            <div>
+                <label for="filtro-uf">Filtrar por UF:</label>
+                <select id="filtro-uf">
+                    <option value="TODOS">-- Todos os Estados --</option>
+                    <option value="PR">Paraná</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="RJ">Rio de Janeiro</option>
+
+                </select>
+            </div>
+            <!-- Grupo 2: Busca por Município -->
+             <div>
+                <label for="busca-municipio">Buscar por Município:</label>
+                <input type="text" id="busca-municipio" placeholder="Digite o nome da cidade...">
+             </div>
+             <!-- Grupo 3: Upload de Arquivo Local -->
+            <div>
+                <label for="upload-csv">Carregar *.csv:</label>
+                <input type="file" id="upload-csv" accept=".csv">
+            </div>
+            <button type="button" id="btn-processar">Processar Dados</button>
+        </form>
+    </aside>
+    <main>
+        <h2>Painel de Indicadores Gerais</h2>
+        <section>
+            <h3>Principais Métricas</h3>
+            <article>
+                <h4>População Coletada</h4>
+                <p id="card-coletada">Carregando...</p>
+            </article>
+            <article>
+                <h4>População Imputada</h4>
+                <p id="card-imputada">Carregando...</p>
+            </article>
+            <article>
+                <h4>População Total</h4>
+                <p id="card-total">Carregando...</p>
+            </article>
+        </section>
+        <section>
+            <h3>Análise Detalhada por Município</h3>  
+            <table>
+                <caption>
+                    Tabela demográfica contendo a população coletada, imputada e total por município.
+                </caption>
+                <thead>
+                    <tr>
+                        <th scope="col">UF</th>
+                        <th scope="col">Código Município</th>
+                        <th scope="col">Nome do Município</th>
+                        <th scope="col">Pop. Coletada</th>
+                        <th scope="col">Pop. Imputada</th>
+                        <th scope="col">Pop. Total</th>
+                    </tr>
+                </thead>
+                <tbody id="dados-municipios">
+                    <tr>
+                        <td colspan="6">
+                            ⚠️ ATENÇÃO: Use o botão para carregar o arquivo CSV do Censo e ativar o painel.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>
+            Fonte: Dados públicos extraídos do Censo 2022 - 
+            <a href="https://ftp.ibge.gov.br/Censos/Censo_Demografico_2022/Populacao_e_domicilios_Primeiros_resultados/Resultados_da_2a_apuracao_20231027/" target="_blank">IBGE</a> - 
+            Diretoria de Pesquisas - DPE -  Coordenação Técnica do Censo Demográfico - CTD
+        </p>
+    </footer>
+    <py-script type="py" src="main.py"></py-script>
+</body>
+</html>
