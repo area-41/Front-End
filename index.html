@@ -32,6 +32,13 @@
       overflow-y: auto;
     }
 
+    aside a.active {
+      background-color: #e0e7ff;
+      color: #4338ca;
+      font-weight: 600;
+      border-left: 3px solid #6366f1;
+    }
+
     aside h3 {
       font-size: 11px;
       text-transform: uppercase;
@@ -169,5 +176,38 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('aside a');
+
+      // Configura o observador para detectar qual seção está ocupando a tela
+      const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -60% 0px', // Ajusta a linha de detecção da tela
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const currentId = entry.target.getAttribute('id');
+            
+            // Remove a classe 'active' de todos os links
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Adiciona a classe 'active' ao link da seção visível
+            const activeLink = document.querySelector(`aside a[href="#${currentId}"]`);
+            if (activeLink) {
+              activeLink.classList.add('active');
+            }
+          }
+        });
+      }, observerOptions);
+
+      // Registra todas as seções no observador
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
 </body>
 </html>
